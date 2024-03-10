@@ -4,6 +4,25 @@ import type { TransportConnection, Application } from '@feathersjs/feathers'
 import authenticationClient from '@feathersjs/authentication-client'
 import type { AuthenticationClientOptions } from '@feathersjs/authentication-client'
 
+import { sellCouponClient } from './services/sell-coupon/sell-coupon.shared'
+export type {
+  SellCoupon,
+  SellCouponData,
+  SellCouponQuery,
+  SellCouponPatch
+} from './services/sell-coupon/sell-coupon.shared'
+
+import { buyCouponClient } from './services/buy-coupon/buy-coupon.shared'
+export type {
+  BuyCoupon,
+  BuyCouponData,
+  BuyCouponQuery,
+  BuyCouponPatch
+} from './services/buy-coupon/buy-coupon.shared'
+
+import { userClient } from './services/users/users.shared'
+export type { User, UserData, UserQuery, UserPatch } from './services/users/users.shared'
+
 export interface Configuration {
   connection: TransportConnection<ServiceTypes>
 }
@@ -30,5 +49,8 @@ export const createClient = <Configuration = any,>(
   client.configure(authenticationClient(authenticationOptions))
   client.set('connection', connection)
 
+  client.configure(userClient)
+  client.configure(buyCouponClient)
+  client.configure(sellCouponClient)
   return client
 }

@@ -17,6 +17,7 @@ import { configurationValidator } from './configuration'
 import { logger } from './logger'
 import { logError } from './hooks/log-error'
 import { mongodb } from './mongodb'
+import { authentication } from './authentication'
 import { services } from './services/index'
 import { channels } from './channels'
 
@@ -40,6 +41,7 @@ app.configure(
   })
 )
 app.configure(mongodb)
+app.configure(authentication)
 app.configure(services)
 app.configure(channels)
 
