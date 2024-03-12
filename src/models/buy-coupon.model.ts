@@ -10,7 +10,12 @@ export default function (app: Application): Model<any> {
   const mongooseClient: Mongoose = app.get('mongooseClient');
   const { Schema } = mongooseClient;
   const schema = new Schema({
-    text: { type: String, required: true }
+    coupon_type: { type: String, required: true },
+    coupon_floor: { type: Number, required: true },
+    coupon_bid_price: { type: Number, required: true },
+    buyer_id: { type: Schema.Types.ObjectId, ref: 'users', required: true },
+    buyer_name: { type: String, required: true },
+    buyer_phone: { type: Number, required: true },
   }, {
     timestamps: true
   });
