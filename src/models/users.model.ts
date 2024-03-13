@@ -2,18 +2,27 @@
 //
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
-import { Application } from '../declarations';
-import { Model, Mongoose } from 'mongoose';
+import { Application } from "../declarations";
+import { Model, Mongoose } from "mongoose";
 
 export default function (app: Application): Model<any> {
-  const modelName = 'users';
-  const mongooseClient: Mongoose = app.get('mongooseClient');
+  const modelName = "users";
+  const mongooseClient: Mongoose = app.get("mongooseClient");
   const schema = new mongooseClient.Schema({
   
-    email: { type: String, unique: true, lowercase: true },
-    password: { type: String },
-    name: { type: String },
-    phone: { type: Number },
+    email: { type: String, unique: true, lowercase: true, required: true},
+    password: { type: String, required: true },
+    name: { type: String,required: true },
+    phone: {
+      type: Number,
+      required: true,
+      validate: {
+        validator: function(value : number) {
+          return value.toString().length === 10;
+        },
+        message: () => "Enter a valid 10-digit phone number"
+      }
+    },
   }, {
     timestamps: true
   });
