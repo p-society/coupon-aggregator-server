@@ -54,10 +54,10 @@ export class Verification implements ServiceMethods<Data> {
       // @ts-ignore
       if (otp === data.otp) {
         const UserService: Service = this.app.service('users');
-        console.log(user);
-        const p = new UserService.Model(user);
-        const _p = await p.save();
-        return _p;
+        const newUser = new UserService.Model(user);
+        const savedUser = await newUser.save();
+        
+        return savedUser;
       }
       else throw new Error('OTP is invalid');
     } catch (error: any) {
