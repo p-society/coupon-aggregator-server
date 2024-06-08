@@ -1,5 +1,5 @@
-import { HooksObject } from '@feathersjs/feathers';
-import { disallow } from 'feathers-hooks-common';
+import { HooksObject } from "@feathersjs/feathers";
+import { disallow } from "feathers-hooks-common";
 
 export default {
   before: {

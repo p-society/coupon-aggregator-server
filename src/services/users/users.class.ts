@@ -3,8 +3,8 @@ import { Application } from "../../declarations";
 import { Params } from "@feathersjs/feathers";
 import { BadRequest } from "@feathersjs/errors";
 import generateOTP from "../../utils/generateOTP";
-import app from "../../app"
-import jwt from "jsonwebtoken"
+import app from "../../app";
+import jwt from "jsonwebtoken";
 import sendMail from "../../utils/sendMail";
 export class Users extends Service {
   //eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -15,7 +15,7 @@ export class Users extends Service {
   async create(data: any, params: Params) {
 
     try {
-      if (!data.email || !data.password) throw new BadRequest('Email and Password is required');
+      if (!data.email || !data.password) throw new BadRequest("Email and Password is required");
 
       const otp = generateOTP();
       const secret = app.settings.authentication.secret;

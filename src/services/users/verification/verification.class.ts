@@ -1,11 +1,11 @@
-import { Id, NullableId, Paginated, Params, ServiceMethods } from '@feathersjs/feathers';
-import { Application } from '../../../declarations';
-import { extractTokenFromHeader } from '../../../utils/extractTokenFromHeader';
-import { BadRequest } from '@feathersjs/errors';
-import { Service } from 'feathers-mongoose';
-import winston from 'winston/lib/winston/config';
-import logger from '../../../logger';
-import jwt from "jsonwebtoken"
+import { Id, NullableId, Paginated, Params, ServiceMethods } from "@feathersjs/feathers";
+import { Application } from "../../../declarations";
+import { extractTokenFromHeader } from "../../../utils/extractTokenFromHeader";
+import { BadRequest } from "@feathersjs/errors";
+import { Service } from "feathers-mongoose";
+import winston from "winston/lib/winston/config";
+import logger from "../../../logger";
+import jwt from "jsonwebtoken";
 
 interface Data { }
 
@@ -36,30 +36,30 @@ export class Verification implements ServiceMethods<Data> {
   async create(data: Data, params?: Params): Promise<Data> {
     try {
       // @ts-ignore
-      if (!data?.otp) throw new BadRequest('OTP not provided');
+      if (!data?.otp) throw new BadRequest("OTP not provided");
       if (!params) {
-        logger.error(`Params not found at users/verification/@create`)
-        throw new Error(`Params not found at users/verification/@create`)
+        logger.error("Params not found at users/verification/@create");
+        throw new Error("Params not found at users/verification/@create");
       }
       
       const token: string | null = extractTokenFromHeader(params);
-      if (!token) throw new BadRequest('Authentication Token Empty');
+      if (!token) throw new BadRequest("Authentication Token Empty");
 
       const secret = this.app.settings.authentication.secret;
       // @ts-ignore
       const { user, otp } = jwt.decode(token, secret);
-      console.log('user = ', user);
-      if (!user) throw new BadRequest('Invalid Token');
+      console.log("user = ", user);
+      if (!user) throw new BadRequest("Invalid Token");
 
       // @ts-ignore
       if (otp === data.otp) {
-        const UserService: Service = this.app.service('users');
+        const UserService: Service = this.app.service("users");
         const newUser = new UserService.Model(user);
         const savedUser = await newUser.save();
         
         return savedUser;
       }
-      else throw new Error('OTP is invalid');
+      else throw new Error("OTP is invalid");
     } catch (error: any) {
       console.log(error);
       throw new Error(error.message);
