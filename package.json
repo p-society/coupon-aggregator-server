@@ -46,20 +46,29 @@
     "@feathersjs/errors": "^4.5.17",
     "@feathersjs/express": "^4.5.18",
     "@feathersjs/feathers": "^4.5.17",
+    "@feathersjs/schema": "^5.0.26",
     "@feathersjs/transport-commons": "^5.0.25",
+    "@feathersjs/typebox": "^5.0.26",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
+    "feathers-hooks-common": "^4.20.7",
     "feathers-mongoose": "^8.5.1",
+    "feathers-swagger": "^3.0.0",
     "helmet": "^5.1.1",
+    "koa": "^2.15.3",
+    "koa-mount": "^4.0.0",
+    "koa-static": "^5.0.0",
     "mongodb-core": "^3.2.7",
     "mongoose": "^6.13.0",
     "serve-favicon": "^2.5.0",
+    "swagger-ui-dist": "^5.17.14",
     "winston": "^3.13.0"
   },
   "devDependencies": {
     "@types/compression": "^1.7.5",
     "@types/cors": "^2.8.17",
     "@types/jsonwebtoken": "^9.0.6",
-    "@types/serve-favicon": "^2.5.7"
+    "@types/serve-favicon": "^2.5.7",
+    "@types/swagger-ui-dist": "^3.30.4"
   }
 }
