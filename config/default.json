@@ -28,5 +28,5 @@
       "passwordField": "password"
     }
   },
-  "mongodb": "mongodb+srv://user:user@cluster0.jcuoflb.mongodb.net"
+  "mongodb": "mongodb+srv://b422056:8T6RBOPBYOtz15aS@ca-cluster-0.q43gtwa.mongodb.net/?retryWrites=true&w=majority&appName=ca-cluster-0"
 }
